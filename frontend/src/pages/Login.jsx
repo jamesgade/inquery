@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import { toast } from "react-toastify"
-import { FaSignInAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { login, reset } from "../features/auth/authSlice";
-import Spinner from "../components/Spinner";
+import { FaSignInAlt } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { login, reset } from "../features/auth/authSlice"
+import Spinner from "../components/Spinner"
 
 const Login = () => {
 
@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         const userData = {
             email,
@@ -77,7 +77,7 @@ const Login = () => {
                 </form>
             </section>
         </>
-    );
+    )
 }
 
-export default Login;
+export default Login

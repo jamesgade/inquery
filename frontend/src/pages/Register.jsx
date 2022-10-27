@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import { FaUser } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
-import { register, reset } from "../features/auth/authSlice";
-import Spinner from "../components/Spinner";
+import { FaUser } from "react-icons/fa"
+import { useSelector, useDispatch } from "react-redux"
+import { register, reset } from "../features/auth/authSlice"
+import Spinner from "../components/Spinner"
 
 const Register = () => {
 
@@ -20,7 +20,7 @@ const Register = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { user, isLoading, isSuccess, isError, message } = useSelector(state => state.auth);
+    const { user, isLoading, isSuccess, isError, message } = useSelector(state => state.auth)
 
     useEffect(() => {
         if (isError) {
@@ -44,7 +44,7 @@ const Register = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (password !== confirmPassword) {
             toast.error('Passwords do not match')
         } else {
@@ -89,7 +89,7 @@ const Register = () => {
                 </form>
             </section>
         </>
-    );
+    )
 }
 
-export default Register;
+export default Register
