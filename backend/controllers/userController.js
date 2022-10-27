@@ -1,13 +1,21 @@
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
 const User = require('../models/userModel')
+
+// jwt token
+const generateToken = (id) => {
+
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: '30d'
+    })
+}
 
 // @desc    register a new user
 // @route   /api/users
 // @access  public
 const registerUser = asyncHandler(async (req, res) => {
+
     const { name, email, password } = req.body
 
     // validation
@@ -18,6 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // check if user already exists         //here 'email' is email: email
     const userExists = await User.findOne({ email })
+
     if (userExists) {
         res.status(400)
         throw new Error('User with this email already exists')
@@ -45,13 +54,13 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Invalid user data')
     }
-
 })
 
 // @desc    login a user
 // @route   /api/users/login
 // @access  public
 const loginUser = asyncHandler(async (req, res) => {
+
     const { email, password } = req.body
 
     const user = await User.findOne({ email })
@@ -68,28 +77,21 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(401)
         throw new Error('Invalid credentials')
     }
-
 })
-
 
 // @desc    get current user
 // @route   /api/users/me
 // @access  private
 const getMe = asyncHandler(async (req, res) => {
+
     const user = {
         id: req.user._id,
         name: req.user.name,
         email: req.user.email
     }
+    
     res.status(200).json(user)
 })
-
-
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d'
-    })
-}
 
 module.exports = {
     registerUser,

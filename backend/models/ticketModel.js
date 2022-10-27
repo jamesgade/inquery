@@ -21,6 +21,10 @@ const ticketSchema = mongoose.Schema({
         enum: ['new', 'open', 'closed'],
         default: 'new'
     }
-}, { timestamps: true })
+},
+    {
+        timestamps: true
+    }
+)
 
 module.exports = mongoose.model('Ticket', ticketSchema)
