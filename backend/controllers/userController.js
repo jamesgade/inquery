@@ -2,11 +2,12 @@ const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
+const { JWT_SECRET } = require('../../config/keys')
 
 // jwt token
 const generateToken = (id) => {
 
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id }, JWT_SECRET, {
         expiresIn: '30d'
     })
 }
@@ -89,7 +90,7 @@ const getMe = asyncHandler(async (req, res) => {
         name: req.user.name,
         email: req.user.email
     }
-    
+
     res.status(200).json(user)
 })
 
